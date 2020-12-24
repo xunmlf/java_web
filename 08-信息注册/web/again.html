@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Jquery.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-image: url("body.png");
+            background-repeat: no-repeat;
+        }
+
+        #box1{
+            width: 30%;
+            height: auto;
+            margin: 15% auto 0;
+            text-align: center;
+            color: red;
+            font-size: 40px;
+        }
+        #login_box {
+            width: 30%;
+            height: auto;
+            border-radius: 50px;
+            margin: auto 0 100px 600px;
+            text-align: center;
+            background: #00000050;
+            padding: 20px 50px;
+        }
+
+        #login_box h1 {
+            color:#ffffff;
+        }
+
+        .item input {
+            display: inline;
+            border: 0;
+            border-bottom: 2px solid #ffffff;
+            font-size: 18px;
+            padding: 5px 10px;
+            background: #ffffff00;
+            color: #ffffff;
+        }
+        .item input:focus {
+            outline: none;
+        }
+        #btn {
+            margin-top: 15px;
+            width: 100px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            background-image: linear-gradient(to right, #db3125 0%, #578bc3 100%);
+            border: 0;
+            border-radius: 15px;
+        }
+        #btn2{
+            color: black;
+            width: 60px;
+            float: left;
+            margin-left: 5px;
+            border: 0;
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+            border-radius: 5px;
+
+        }
+        #btn3 {
+            display: inline-block;
+            margin-top: 25px;
+            margin-right: 20px;
+            width: 100px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+            border: 0;
+            border-radius: 15px;
+            text-decoration: none;
+        }
+
+
+        span {
+            font-size: 14px;
+        }
+
+        #card {
+            float: left;
+            margin-left: 150px;
+        }
+
+        #userName {
+            float: left;
+            margin-left: 150px;
+        }
+
+        #pwd {
+            float: left;
+            margin-left: 150px;
+        }
+
+    </style>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        $("#userName").bind("blur", fun1);
+        $("#pwd").bind("blur", fun2);
+        $("#card").bind("blur", fun5);
+        $("#btn2").bind("click", fun4)
+        $("#btn").bind("click", fun3);
+        fun4();
+
+        //完成用户名的验证
+        function fun1() {
+            let name = $("#userName").val();
+            if (name == "") {
+                $("#userError").text("用户名不能为空");
+                $("#userError").css("color", "red");
+            } else {
+                const regExp = /^[\u4e00-\u9fff\w]{1,16}$/;
+                const ok = regExp.test(name);
+                if (!ok) {
+                    $("#userError").text("长度大于1小于16");
+                    $("#userError").css("color", "red");
+                } else {
+                    $("#userError").text("");
+                }
+
+            }
+        }
+
+        //密码的验证
+        function fun2() {
+            let pwd = $("#pwd").val();
+            if (pwd == "") {
+                $("#pwdError").text("密码不能为空");
+                $("#pwdError").css("color", "red");
+            } else {
+                $("#pwdError").text("");
+            }
+        }
+
+        //提交测试
+        function fun3() {
+            fun1();
+            fun2();
+            fun5();
+            if ($("#userError").text() === $("#pwdError").text() && $("#pwdError").text() === $("#cardError").text()) {
+                $("form").submit();
+            }
+
+        }
+
+        //随机4位验证码
+        function fun4() {
+            $("#btn2").attr("value", Math.floor(Math.random() * 10000 + 1));
+        }
+
+        function fun5() {
+            let value = $("#btn2").val();
+            if ($("#card").val() !== $("#btn2").val()) {
+                $("#cardError").text("验证码输入错误");
+                $("#cardError").css("color", "red");
+            }
+
+            if ($("#card").val() === $("#btn2").val()) {
+                $("#cardError").text("");
+            }
+
+
+        }
+
+    }
+</script>
+
+<form action="/08_web/login" method="post" id="form">
+    <div id="box1">该用户不存在请重试</div>
+    <div id="login_box">
+        <h1>Login</h1>
+        <div class="form">
+            <div class="item"><input type="text" name="userName" id="userName" placeholder="请输入用户名"/><span
+                    id="userError"></span><br><br></div>
+            <div class="item"><input type="password" name="password" id="pwd" placeholder="请输入密码"/><span
+                    id="pwdError"></span><br><br></div>
+            <div class="item"><input type="text" name="name" id="card" placeholder="请输入验证码"/><input type="button"
+                                                                                                    id="btn2"/><span
+                    id="cardError"></span><br><br>
+            </div>
+
+
+        </div>
+        <input type="button" value="登录" id="btn"/>
+        <a id="btn3" href="person_Add.html">注册</a>
+
+
+    </div>
+</form>
+
+
+
+</body>
+</html>

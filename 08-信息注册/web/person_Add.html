@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+        }
+
+        .box1 {
+            font-size: 30px;
+            color: #0E0E0F;
+            font-weight: bold;
+
+            background: linear-gradient(9deg, #FA1C24 0%, #fbc2eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .in {
+            height: 40px;
+            width: 200px;
+            margin: 0 auto;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .btn {
+            margin-top: 15px;
+            width: 100px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            background-image: linear-gradient(to right, #db3115 0%, #578ba3 100%);
+            border: 0;
+            border-radius: 15px;
+        }
+    </style>
+
+</head>
+<body>
+<center>
+    <div class="box1">用户注册</div>
+
+    <form action="/08_web/people" method="get">
+        用户姓名:<input type="text" name="userName" class="in" placeholder="请输入用户名"/><br><br>
+
+        用户密码:<input type="password" name="password" class="in" placeholder="请输入密码"/><br><br>
+
+        用户性别:<input type="radio" name="sex" value="men"/>男
+        <input type="radio" name="sex" value="women"/>女<br><br>
+
+        用户邮箱:<input type="text" name="email" class="in" placeholder="请输入邮箱"/><br><br>
+        <input type="submit" value="注册" class="btn"/>
+        <input type="reset" class="btn"/>
+
+    </form>
+</center>
+
+</body>
+</html>

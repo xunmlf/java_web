@@ -1,0 +1,10 @@
+添加试题
+  create table question(
+  questionId int primary key auto_increment,
+  title varchar(50),
+  optionA varchar(20),
+  optionB varchar(20),
+  optionC varchar(20),
+  optionD varchar(20),
+  answer varchar(10)
+  )default charset=utf8;
